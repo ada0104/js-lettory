@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- saved from url=(0127)file:///C:/Users/Asus/Desktop/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%AB/%E6%A8%82%E9%80%8F/%E5%A4%A7%E6%A8%82%E9%80%8F.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>大樂透</title>
+    <link rel="stylesheet" href="uikit/css/uikit.min.css">
+    <link rel="stylesheet" href="uikit/js/uikit.min.js">
+    <link rel="stylesheet" href="uikit/css/style.css">
+
+</head>
+
+<body>
+    <div class="text">
+        <button class="uk-button uk-button-default aaa" onclick="random()">產生0~100亂整數</button>
+        <p id="text"></p>
+    </div>
+    <script>
+        function random() {
+            document.getElementById("text").textContent = Math.floor(Math.random() * 100);
+        }
+    </script>
+    <hr>
+    <div>
+
+        　
+        <table>
+            <caption>大樂透號碼產生器：</caption>
+            <tbody>
+                <tr>
+                    <th>號碼1</th>
+                    <th>號碼2</th>
+                    <th>號碼3</th>
+                    <th>號碼4</th>
+                    <th>號碼5</th>
+                    <th>號碼6</th>
+                    <th>特別號</th>
+                </tr>
+                <tr>
+                    <td><input name="num01" type="text" style="font-size:45px" id="num01" size="2" maxlength="2"></td>
+                    <td><input name="num02" type="text" style="font-size:45px" id="num02" size="2" maxlength="2"></td>
+                    <td><input name="num03" type="text" style="font-size:45px" id="num03" size="2" maxlength="2"></td>
+                    <td><input name="num04" type="text" style="font-size:45px" id="num04" size="2" maxlength="2"></td>
+                    <td><input name="num05" type="text" style="font-size:45px" id="num05" size="2" maxlength="2"></td>
+                    <td><input name="num06" type="text" style="font-size:45px" id="num06" size="2" maxlength="2"></td>
+                    <td><input name="num07" type="text" style="font-size:45px;color:red" id="num07" size="10" maxlength="2"></td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <input type="submit" name="NumberRender" id="NumberRender" value="大樂透抽獎" onclick="NumRender()">
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+
+        var a = Array("num01", "num02", "num03", "num04", "num05", "num06", "num07");
+        //宣告a，存放表單input元件的名稱 
+        var b = Array("");
+        //宣告b產生之號碼暫存陣列
+
+        //產生號碼，有重複檢查
+        function NumRender() {
+            b[0] = Math.floor(Math.random() * 49 + 1);//第一個絕對不會重複
+            for (i = 1; i <= 6; i = i + 1) {
+                Num = Math.floor(Math.random() * 49 + 1);//先產生亂數
+                for (j = 1; j <= i; j = j + 1) {//檢查是否有重複
+                    if (b[i - j] == Num) {
+                        i = i - 1;
+                        break//跳出FOR I的回圈重新產生亂數
+                    }
+                    b[i] = Num
+                }
+            }
+            setNumber();
+        }
+        function setNumber() { //將產生之號碼依序設為表單input值
+            for (i = 1; i <= 7; i = i + 1) {
+                document.getElementById(a[i - 1]).value = b[i - 1];
+            }
+        }
+    </script>
+
+
+</body></html>
